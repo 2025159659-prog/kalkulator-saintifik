@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ms" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kalkulator saintifik dengan fungsi trigonometri, logaritma, memori, sejarah dan sokongan papan kekunci.">
+  <meta name="theme-color" content="#eef4f0" id="themeColor">
+  <title>Kalkulator Saintifik</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#expression">Langkau ke paparan kalkulator</a>
+
+  <div class="page">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">∑</span>
+        <div class="brand__text">
+          <p class="brand__eyebrow">Alat matematik</p>
+          <h1>Kalkulator Saintifik</h1>
+          <p class="brand__subtitle">Kira ungkapan dengan fungsi saintifik dan unit sudut pilihan anda.</p>
+        </div>
+      </div>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Tukar ke tema gelap" aria-pressed="false">
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+        </svg>
+        <span id="themeLabel">Tema gelap</span>
+      </button>
+    </header>
+
+    <main class="layout">
+      <section class="calculator" id="calculator" aria-label="Kalkulator saintifik">
+        <div class="display">
+          <div class="display__top">
+            <div class="display__badges">
+              <span class="badge badge--memory" id="memoryBadge" title="Memori aktif" hidden>M</span>
+              <span class="badge" id="angleBadge" aria-hidden="true">DEG</span>
+            </div>
+            <span class="display__caption">Paparan</span>
+          </div>
+
+          <label class="visually-hidden" for="expression">Ungkapan matematik</label>
+          <input
+            class="expression"
+            id="expression"
+            type="text"
+            inputmode="text"
+            placeholder="Contoh: 12 × (3 + 4)"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            maxlength="500"
+            enterkeyhint="done"
+            aria-describedby="keyboardHint"
+            aria-errormessage="errorMessage"
+          >
+
+          <div class="result-row">
+            <span class="result-row__equals" aria-hidden="true">=</span>
+            <output class="result" id="result" for="expression" aria-label="Hasil pengiraan">0</output>
+          </div>
+
+          <p class="display-error" id="errorMessage" role="alert" hidden>
+            <span class="display-error__icon" aria-hidden="true">!</span>
+            <span id="errorText"></span>
+          </p>
+        </div>
+
+        <div class="utility-bar">
+          <div class="angle-switch" role="group" aria-label="Unit sudut">
+            <button class="angle-key" type="button" data-angle="deg" aria-label="Darjah" aria-pressed="true">DEG</button>
+            <button class="angle-key" type="button" data-angle="rad" aria-label="Radian" aria-pressed="false">RAD</button>
+          </div>
+
+          <div class="memory-group" role="group" aria-label="Fungsi memori">
+            <button class="memory-key" type="button" data-memory="clear" aria-label="Kosongkan memori" title="Kosongkan memori (MC)" disabled>MC</button>
+            <button class="memory-key" type="button" data-memory="recall" aria-label="Panggil nilai memori" title="Panggil memori (MR)" disabled>MR</button>
+            <button class="memory-key" type="button" data-memory="add" aria-label="Tambah nilai semasa ke memori" title="Tambah ke memori (M+)">M+</button>
+            <button class="memory-key" type="button" data-memory="subtract" aria-label="Tolak nilai semasa daripada memori" title="Tolak daripada memori (M−)">M−</button>
+            <button class="memory-key" type="button" data-memory="store" aria-label="Simpan nilai semasa ke memori" title="Simpan ke memori (MS)">MS</button>
+          </div>
+        </div>
+
+        <div class="scientific-pad" role="group" aria-label="Fungsi saintifik">
+          <button class="key key--function" type="button" data-insert="sin(" aria-label="Sinus">sin</button>
+          <button class="key key--function" type="button" data-insert="cos(" aria-label="Kosinus">cos</button>
+          <button class="key key--function" type="button" data-insert="tan(" aria-label="Tangen">tan</button>
+          <button class="key key--function" type="button" data-insert="ln(" aria-label="Logaritma asli">ln</button>
+          <button class="key key--function" type="button" data-insert="log(" aria-label="Logaritma asas sepuluh">log</button>
+
+          <button class="key key--function" type="button" data-insert="asin(" aria-label="Sinus songsang">sin<sup>−1</sup></button>
+          <button class="key key--function" type="button" data-insert="acos(" aria-label="Kosinus songsang">cos<sup>−1</sup></button>
+          <button class="key key--function" type="button" data-insert="atan(" aria-label="Tangen songsang">tan<sup>−1</sup></button>
+          <button class="key key--function" type="button" data-insert="sqrt(" aria-label="Punca kuasa dua">√</button>
+          <button class="key key--function" type="button" data-insert="abs(" aria-label="Nilai mutlak">|x|</button>
+
+          <button class="key key--function" type="button" data-insert="π" aria-label="Pi">π</button>
+          <button class="key key--function" type="button" data-insert="e" aria-label="Pemalar e">e</button>
+          <button class="key key--function" type="button" data-insert="^" aria-label="Kuasa">^</button>
+          <button class="key key--function" type="button" data-insert=" mod " aria-label="Modulus">mod</button>
+          <button class="key key--function" type="button" data-insert="%" aria-label="Peratus">%</button>
+        </div>
+
+        <div class="numeric-pad" role="group" aria-label="Nombor dan operator">
+          <button class="key key--utility" type="button" data-action="clear" aria-label="Kosongkan paparan">AC</button>
+          <button class="key key--utility" type="button" data-insert="(" aria-label="Kurungan buka">(</button>
+          <button class="key key--utility" type="button" data-insert=")" aria-label="Kurungan tutup">)</button>
+          <button class="key key--operator" type="button" data-insert="÷" aria-label="Bahagi">÷</button>
+
+          <button class="key key--number" type="button" data-insert="7">7</button>
+          <button class="key key--number" type="button" data-insert="8">8</button>
+          <button class="key key--number" type="button" data-insert="9">9</button>
+          <button class="key key--operator" type="button" data-insert="×" aria-label="Darab">×</button>
+
+          <button class="key key--number" type="button" data-insert="4">4</button>
+          <button class="key key--number" type="button" data-insert="5">5</button>
+          <button class="key key--number" type="button" data-insert="6">6</button>
+          <button class="key key--operator" type="button" data-insert="−" aria-label="Tolak">−</button>
+
+          <button class="key key--number" type="button" data-insert="1">1</button>
+          <button class="key key--number" type="button" data-insert="2">2</button>
+          <button class="key key--number" type="button" data-insert="3">3</button>
+          <button class="key key--operator" type="button" data-insert="+" aria-label="Tambah">+</button>
+
+          <button class="key key--utility" type="button" data-action="toggle-sign" aria-label="Tukar tanda nombor">±</button>
+          <button class="key key--number" type="button" data-insert="0">0</button>
+          <button class="key key--number" type="button" data-insert="." aria-label="Titik perpuluhan">.</button>
+          <button class="key key--utility" type="button" data-action="backspace" aria-label="Hapus aksara terakhir">⌫</button>
+
+          <button class="key key--equals" type="button" data-action="calculate" aria-label="Kira hasil">=</button>
+        </div>
+
+        <p class="keyboard-help" id="keyboardHint">
+          Papan kekunci: nombor, operator, <kbd>Enter</kbd> untuk kira, <kbd>Backspace</kbd> untuk hapus, <kbd>Esc</kbd> untuk kosongkan.
+        </p>
+      </section>
+
+      <aside class="history" aria-labelledby="historyTitle">
+        <div class="history__header">
+          <div>
+            <p class="history__eyebrow">Rekod pengiraan</p>
+            <h2 id="historyTitle">Sejarah</h2>
+          </div>
+          <button class="text-button" id="clearHistory" type="button" disabled>Padam semua</button>
+        </div>
+
+        <p class="history__hint">Pilih catatan untuk menggunakannya semula.</p>
+
+        <div class="history-empty" id="historyEmpty">
+          <span class="history-empty__icon" aria-hidden="true">∅</span>
+          <p class="history-empty__title">Belum ada sejarah.</p>
+          <p>Pengiraan yang berjaya akan muncul di sini.</p>
+        </div>
+
+        <ol class="history-list" id="historyList" aria-label="Pengiraan terdahulu" hidden></ol>
+      </aside>
+    </main>
+
+    <footer class="app-footer">
+      <p>Tiada data dihantar ke pelayan. Tema, memori dan sejarah disimpan dalam pelayar anda.</p>
+    </footer>
+  </div>
+
+  <p class="visually-hidden" id="statusMessage" role="status" aria-live="polite"></p>
+
+  <script src="src/main.js"></script>
+</body>
+</html>
